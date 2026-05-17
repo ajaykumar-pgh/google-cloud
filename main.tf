@@ -1,3 +1,4 @@
+/*
 resource "google_compute_network" "vpc" {
   name                    = "uat-vpc"
   auto_create_subnetworks = false
@@ -21,3 +22,4 @@ resource "google_storage_bucket" "terraform_bucket" {
     enabled = true
   }
 }
+*/
