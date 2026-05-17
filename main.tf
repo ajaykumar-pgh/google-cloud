@@ -9,3 +9,15 @@ resource "google_compute_subnetwork" "subnet" {
   region        = var.region
   network       = google_compute_network.vpc.id
 }
+
+resource "google_storage_bucket" "terraform_bucket" {
+  name          = "ajay-demo-storage-bucket-001"
+  location      = "ASIA-SOUTH1"
+  force_destroy = true
+
+  uniform_bucket_level_access = true
+
+  versioning {
+    enabled = true
+  }
+}
