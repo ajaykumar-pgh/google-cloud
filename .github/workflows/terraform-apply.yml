@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   terraform-apply:
 
@@ -22,8 +26,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Create GCP Credentials File
-        run: echo '${{ secrets.GCP_CREDENTIALS }}' > terraform-key.json
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
