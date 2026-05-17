@@ -1,5 +1,8 @@
 terraform {
-
+  backend "gcs" {
+    bucket = "ajay-terraform-state-prod-001"
+    prefix = "terraform/state"
+  }
   required_version = ">= 1.5"
 
   required_providers {
